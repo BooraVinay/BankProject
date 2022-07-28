@@ -1,18 +1,19 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include "accountdetails.c"
+#include <stdio.h>
+#include <stdlib.h>
 //#define balance 500
 
 float balance=500;
-char accounttype[][]={{"Savings"}};
 
 void chk_balance()
 {
     printf("%.2f",balance);
 }
+
 float with_amount;
+
 void withdrawal()
 {
+    char accounttype[][45]={{"Savings"}};
     //float with_amount;
     printf("Enter the Witdraw Amount");
     scanf("%f",&with_amount);
@@ -33,7 +34,9 @@ void withdrawal()
     //main();
 
 }
+
 float deposit_amount;
+
 void deposit()
 {
     //float deposit_amount;
@@ -44,9 +47,11 @@ void deposit()
 
 void mini_stat()
 {
+
     printf("Ministatement:\n");
     time_t t = time(NULL);
-        printf("Current Date & Time %s\n", ctime(&t));
+
+    printf("Current Date & Time %s\n", ctime(&t));
     printf("Date / Remarks             Amount\n");
     printf("_______________________________________\n");
     printf(" 06 Feb 2019            XXXX.xx(Dr)\n");
