@@ -1,66 +1,73 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "accountdetails.h"
-#include "Interest.h"
+#include "interest.h"
 #include "balance.h"
 
-void acc_open();
 
 int main()
 {
 
-    int pin;
-    int flag=0;
-    int a;
-    char username[45];
-    char usernames[][45]={{"Vinay"},{"Akshath"},{"Susmitha"},{"krishna"},{"Anusha"},{"Teja"}};
-
-    int pins[]={3456,7654,1807,2608,912,303};
+    int pin,a,n;
+    char username[100];
     printf("Welcome to ABC Banking\n");
-    printf("Enter your username\n");
-    scanf("%s", &username);
-    printf("Enter your pin\n");
-    scanf("%d", &pin);
+    printf("1.New User? Open Account\n 2.Existing User Login\n");
+    scanf("%d",&n);
+    switch(n){
+        case 1:
+            choose();
+            goto lab;
+          break;
+          case 2:
+            printf("Enter your username\n");
+            scanf("%s", &username);
+            printf("Enter your pin\n");
+            scanf("%d", &pin);
+            char str[]="Vinay";
 
-    for(int i=0;i<6;i++)
-    {
-        if((usernames[i]==username)&&(pins[i]==pin)) {
-            flag=1;
-        }
 
+            if(strcmp(username,str) && pin==12345 ) {
+
+
+
+            lab:  printf("Choose the below User operations to proceed further.\n 1. Interest rate calculation\n 2. Check balance \n 3. Print Mini Statement\n 4. Withdrawl \n 5. Deposit. \n 6. Exit.\n");
+                scanf("%d",&a);
+
+                switch(a)
+                {
+                
+                    case 1: int_cal();
+                    goto lab;
+                    break;
+                    case 2: chk_balance();
+                    goto lab;
+                    break;
+                    case 3: mini_stat();
+                    goto lab;
+                    break;
+                    case 4: withdrawal();
+                    goto lab;
+                    break; 
+                    case 5: deposit();
+                    goto lab;
+                    break;
+                    case 6: exit(0);
+
+                    break;
+                    default: printf("Invalid");
+                    goto lab;
+                }
+                }
+        
+                else {
+
+                            printf("Invalid pin or username\n");
+                    }
+            break;
+            }
+        return 0;
     }
 
-    if(flag!=0) {
-            printf("Invalid pin or username\n");
-    } else {
 
-        printf("Choose the below options to proceed further.\n 1. Savings Account Opening\n 2. Current Account Opening\n 3. Interest rate calculation\n 4. Check balance \n 5. Print Mini Statement\n 6. Withdrawl \n 7. Deposit. \n 8. Exit.\n");
-        scanf("%d",&a);
 
-        switch(a)
-        {
-            case 1: acc_open();
-            break;
-            case 2: acc_open();
-            break;
-            case 3: int_cal();
-            break;
-            case 4: chk_balance();
-            break;
-            case 5: mini_stat();
-            break;
-            case 6: withdrawal();
-            break; 
-            case 7: deposit();
-            break;
-            case 8: exit(0);
-            break;
-            default: printf("Invalid");
-            main();
-        }
 
-    }
-
-    return 0;
-
-}
